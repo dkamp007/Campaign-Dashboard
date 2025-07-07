@@ -1,0 +1,8 @@
+streamlit
+pandas
+mysql-connector-python
+sqlalchemy
+plotly
+matplotlib
+streamlit-extras
+streamlit-components
