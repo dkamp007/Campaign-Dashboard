@@ -24,9 +24,9 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 
 - **Advanced Filter Builder:** Users can dynamically add filter rows for Spend, Clicks, ROI, etc.
 
-- Clean UI with Custom Styling: HTML/CSS-enhanced metric cards and styled data tables.
+- **Clean UI with Custom Styling:** HTML/CSS-enhanced metric cards and styled data tables.
 
-- Performance Optimized: Cached queries for faster loading and reduced database strain.
+- **Performance Optimized:** Cached queries for faster loading and reduced database strain.
 
 ## 🛠️ Tech Stack
 
