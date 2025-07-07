@@ -39,3 +39,18 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 - **Data Access Layer:** Modular SQL query handler in utils/db.py
 
 - **Styling:** Custom CSS + Streamlit widgets
+
+## 📁 Project Structure
+
+📦 campaign-dashboard/
+│
+├── main.py                 # Main Streamlit app file
+├── utils/
+│   └── db.py              # Database connection query
+├── queries/
+│   └── fetch_data.py      # Database query functions to fetch the required data
+├── style.css              # Custom styling for KPIs and components
+├── README.md              # Project documentation
+└── requirements.txt       # Python dependencies
+
+
