@@ -25,7 +25,7 @@ def color_pnl(val):
 
 
 # --- MAIN TAB FUNCTION ---
-def render_data_tabs(df_aggregated, df_table, start_date, end_date, user_id_selection, campaign_name_selection, fetch_publisher_report):
+def render_data_tabs(df_aggregated, df_table, df_pub, start_date, end_date, user_id_selection, campaign_name_selection):
     pub_pnl_cols = ['PnL']
     pub_roi_cols = ['ROI']
     percentage_cols = ['Impr_Δ', 'Clicks_Δ', 'Spend_Δ', 'TCL_Δ', 'AFS_Δ']
@@ -51,8 +51,8 @@ def render_data_tabs(df_aggregated, df_table, start_date, end_date, user_id_sele
                          'AFS': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
                         'PL_AFS': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
                          'PL_TCL': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
-                         'ROI_AFS': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
-                         'ROI_TCL': lambda x: f"${x:,.2f}" if pd.notna(x) else "-"
+                         'ROI_AFS': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-",
+                         'ROI_TCL': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-"
         }), use_container_width=True, hide_index=True)
 
     with tab2:
@@ -73,13 +73,13 @@ def render_data_tabs(df_aggregated, df_table, start_date, end_date, user_id_sele
                                 'AFS': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
                                 'PL_AFS': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
                                 'PL_TCL': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
-                                'Impr_Δ': lambda x: f"${x:,.2f}" if pd.notna(x) else "-", 
-                                'Clicks_Δ': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
-                                'Spend_Δ': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
-                                'TCL_Δ': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
-                                'AFS_Δ': lambda x: f"${x:,.2f}" if pd.notna(x) else "-", 
-                                'ROI_AFS': lambda x: f"${x:,.2f}" if pd.notna(x) else "-",
-                                'ROI_TCL': lambda x: f"${x:,.2f}" if pd.notna(x) else "-"
+                                'Impr_Δ': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-", 
+                                'Clicks_Δ': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-",
+                                'Spend_Δ': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-",
+                                'TCL_Δ': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-",
+                                'AFS_Δ': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-", 
+                                'ROI_AFS': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-",
+                                'ROI_TCL': lambda x: f"{x:,.2f}%" if pd.notna(x) else "-"
             })
 
         st.dataframe(styled_df, use_container_width=True, hide_index=True)
@@ -87,8 +87,7 @@ def render_data_tabs(df_aggregated, df_table, start_date, end_date, user_id_sele
     with tab3:
         st.markdown("### 📑 Publishers-level View")
 
-        pub_df = fetch_publisher_report(start_date, end_date, user_id_selection, campaign_name_selection)
-        st.write(f"Total **{len(pub_df)}** publishers with total spend: **${pub_df['Spend'].sum():,.2f}**")
+        st.write(f"Total **{len(df_pub)}** publishers with total spend: **${df_pub['Spend'].sum():,.2f}**")
 
         with st.expander("*🔍 Advanced Publisher Filters*", expanded=False):
             if 'num_pub_filters' not in st.session_state:
@@ -104,17 +103,17 @@ def render_data_tabs(df_aggregated, df_table, start_date, end_date, user_id_sele
                 if st.button("❌ Remove Last Filter") and st.session_state.num_pub_filters > 1:
                     st.session_state.num_pub_filters -= 1
 
-            filter_metrics = ['Spend', 'Clicks', 'Impr', 'ROI']
-            operators = ['>', '<', '>=', '<=', '=']
+            filter_metrics = ['', 'Spend', 'Clicks', 'Impr', 'ROI']
+            operators = ['', '>', '<', '>=', '<=', '=']
 
-            filtered_pub_df = pub_df.copy()
+            filtered_pub_df = df_pub.copy()
 
             for i in range(st.session_state.num_pub_filters):
                 filter_row = st.columns([3, 2, 3])
 
-                metric = filter_row[0].selectbox(f"Metric_{i}", filter_metrics, key=f"metric_{i}")
-                operator = filter_row[1].selectbox(f"Operator_{i}", operators, key=f"operator_{i}")
-                value = filter_row[2].number_input(f"Value_{i}", key=f"value_{i}", step=0.01)
+                metric = filter_row[0].selectbox(f"Metric", filter_metrics, key=f"metric {i}")
+                operator = filter_row[1].selectbox(f"Operator", operators, key=f"operator {i}")
+                value = filter_row[2].number_input(f"Value", key={i}, step=0.01)
 
                 if metric in filtered_pub_df.columns:
                     if operator == '>':
