@@ -34,7 +34,14 @@ def render_sidebar_filters():
 
     start_date = custom_start_date
     end_date = custom_end_date
-    num_days_selected = (end_date - start_date).days
+    
+    num_days_selected = (end_date - start_date).days + 1
+    
+    if start_date == end_date:
+        num_days_selected = 1
+    else:
+        num_days_selected
+    
     st.sidebar.markdown(f"**Selected period:** :blue[{num_days_selected} days]")
 
     # --- USER FILTER ---
