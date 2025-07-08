@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from datetime import timedelta
 from queries.fetch_data import fetch_data
 
@@ -88,5 +89,3 @@ def render_kpi_block(df_table, start_date, end_date, user_id_selection, campaign
                 {roi_delta_html}
             </div>
         </div>""", unsafe_allow_html=True)
-
-    st.divider()
