@@ -2,6 +2,8 @@
 
 A fully interactive and modular web-based dashboard to analyze Bing Ads campaign performance. Built using Streamlit, Plotly, and Python, this dashboard empowers marketing analysts and campaign managers to explore campaign-level, publisher-level, and daily aggregated data with dynamic filters, KPI comparisons, trend charts, and advanced filtering options.
 
+---
+
 ## 🚀 Features
 
 - **Dynamic Date Filtering:** Quick filters like Last **7/15/30** days or custom date selection.
@@ -28,6 +30,8 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 
 - **Performance Optimized:** Cached queries for faster loading and reduced database strain.
 
+---
+
 ## 🛠️ Tech Stack
 
 - **Frontend/UI:** Streamlit
@@ -39,3 +43,5 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 - **Data Access Layer:** Modular SQL query handler in utils/db.py
 
 - **Styling:** Custom CSS + Streamlit widgets
+
+---
