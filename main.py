@@ -2,7 +2,10 @@ import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
 from streamlit_extras.metric_cards import style_metric_cards
-from queries.fetch_data import fetch_data, fetch_aggregated_daily_data, fetch_overall_trend_data, fetch_publisher_report
+from queries.campaign_stats import fetch_data
+from queries.daily_stats import fetch_aggregated_daily_data
+from queries.chart_data import fetch_overall_trend_data
+from queries.publishers_stats import fetch_publisher_report
 from components.sidebar_filters import render_sidebar_filters
 from components.kpis import render_kpi_block
 from components.charts import render_line_chart
