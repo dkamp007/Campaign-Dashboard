@@ -25,8 +25,10 @@ except FileNotFoundError:
     st.warning("`style.css` not found. Some custom styling may be missing.")
 
 
+
 # --- Sidebar Filters ---
 start_date, end_date, user_id_selection, campaign_name_selection = render_sidebar_filters()
+
 
 
 # --- Fetch Core Data ---
@@ -35,6 +37,8 @@ df_campaign_table = fetch_data(start_date, end_date, user_id_selection, campaign
 df_daily_aggregated = fetch_aggregated_daily_data(start_date, end_date, user_id_selection, campaign_name_selection)
 
 df_pub_data = fetch_publisher_report(start_date, end_date, user_id_selection, campaign_name_selection)
+
+
 
 # --- Determine if Overall or Filtered Charts Should Be Used ---
 is_filtered_by_campaigns = bool(campaign_name_selection)
@@ -50,6 +54,7 @@ else:
     else:
         df_for_charts = pd.DataFrame(columns=["Date", "Spend", "TCL"])
     chart_title_suffix = " (Filtered Performance)"
+
 
 
 # --- Main Dashboard ---
