@@ -81,4 +81,4 @@ else:
     st.warning("No data found for the selected filters. Please adjust the dates, user IDs, or campaign names.")
 
 st.divider()
-st.caption("Crafted with ❤️ by **dkamp007**")
+st.caption("Crafted with ❤️ by dkamp007!")
