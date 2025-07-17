@@ -25,7 +25,7 @@ def color_pnl(val):
 
 
 # --- MAIN TAB FUNCTION ---
-def render_data_tabs(df_aggregated, df_table, df_pub, start_date, end_date, user_id_selection, campaign_name_selection):
+def render_data_tabs(df_aggregated, df_campaign, df_pub, start_date, end_date, user_id_selection, campaign_name_selection):
     pub_pnl_cols = ['PnL']
     pub_roi_cols = ['ROI']
     percentage_cols = ['Impr_Δ', 'Clicks_Δ', 'Spend_Δ', 'TCL_Δ', 'AFS_Δ']
@@ -57,7 +57,7 @@ def render_data_tabs(df_aggregated, df_table, df_pub, start_date, end_date, user
 
     with tab2:
         st.markdown("### 🎯 Campaign-level View")
-        styled_df = df_table.style \
+        styled_df = df_campaign.style \
             .map(color_percentage_change, subset=percentage_cols) \
             .map(color_percentage_change, subset=roi_cols) \
             .map(color_pnl, subset=pnl_cols) \
