@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import timedelta
-from queries.fetch_data import fetch_data
+from queries.campaign_stats import fetch_data
 
 
 def render_kpi_block(df_table, start_date, end_date, user_id_selection, campaign_name_selection):
