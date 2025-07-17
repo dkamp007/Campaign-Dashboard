@@ -22,7 +22,7 @@ def fetch_data(start_date, end_date, user_ids=None, campaign_names=None):
                 bop.bing_campaign_name AS Campaign,
                 SUM(bop.bing_impressions) AS Impr,
                 SUM(bop.bing_spend) AS Spend,
-                SUM(bop.bing_clicks) AS Clicks,
+                SUM(bop.pbt_adclick_count) AS Clicks,
                 SUM(bop.tcl_revenue) AS TCL,
                 SUM(bop.afs_estimated_earnings) AS AFS
             FROM
