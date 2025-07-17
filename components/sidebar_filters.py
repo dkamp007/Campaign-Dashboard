@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import date, timedelta
-from queries.fetch_data import fetch_user_mapping, fetch_campaign_names
+from queries.user import fetch_user_mapping
+from queries.campaign_names import fetch_campaign_names
 
 def render_sidebar_filters():
     st.sidebar.title("Welcome! This is the Dashboard of Bing Reports")
