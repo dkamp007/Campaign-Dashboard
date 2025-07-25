@@ -74,16 +74,16 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 ---
 
 ## ✅ Requirements
-
-- streamlit
-- pandas
-- mysql-connector-python
-- sqlalchemy
-- plotly
-- matplotlib
-- streamlit-extras
-- streamlit-components
-
+```bash
+streamlit
+pandas
+mysql-connector-python
+sqlalchemy
+plotly
+matplotlib
+streamlit-extras
+streamlit-components
+```
 You can install the dependencies with:
 ```bash
 pip install -r requirements.txt
