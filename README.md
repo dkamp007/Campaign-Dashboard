@@ -97,7 +97,7 @@ pip install -r requirements.txt
 **1.** Clone the repository:
 
 ```bash
-git clone https://github.com/dkamp007/campaign-dashboard.git
+git clone https://github.com/dkamp007/Campaign-Dashboard.git
 cd campaign-dashboard
 ```
 
