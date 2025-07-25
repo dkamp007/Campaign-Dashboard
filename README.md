@@ -45,3 +45,71 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 - **Styling:** Custom CSS + Streamlit widgets
 
 ---
+
+## Project Structure
+
+```
+📦 campaign-dashboard/
+│
+├── main.py                 # Main Streamlit app file
+├── utils/
+│   └── db.py              # Database query functions (run_query)
+├── queries/
+│   └── campaign_names.py
+│   └── campaign_stats.py
+│   └── daily_stats.py
+│   └── fetch_data.py
+│   └── publishers_stats.py
+│   └── user.py
+│   └── chart_data.py
+├── components/
+│   └── kpis.py
+│   └── sidebar_filters.py
+│   └── tabs.py
+│   └── charts.py
+├── style.css              # Custom styling for KPIs and components
+├── README.md              # Project documentation
+└── requirements.txt       # Python dependencies
+```
+---
+
+## Requirements
+
+- streamlit
+- pandas
+- mysql-connector-python
+- sqlalchemy
+- plotly
+- matplotlib
+- streamlit-extras
+- streamlit-components
+
+You can install the dependencies with:
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+
+## 🧠 How to Use
+
+**1.** Clone the repository:
+
+```bash
+git clone https://github.com/dkamp007/campaign-dashboard.git
+cd campaign-dashboard
+```
+
+**2.** Add your database credentials to the `utils/db.py` connection method.
+
+**3.** Run the app:
+```bash
+streamlit run main.py
+```
+
+---
+
+## 👨‍💻 Author
+
+Created with ❤️ by Dkamp007
