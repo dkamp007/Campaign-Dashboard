@@ -51,7 +51,7 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 ```
 📦 campaign-dashboard/
 │
-├── main.py                 # Main Streamlit app file
+├── main.py                # Main Streamlit app file
 ├── utils/
 │   └── db.py              # Database query functions (run_query)
 ├── queries/
