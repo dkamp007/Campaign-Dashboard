@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import date, timedelta
+from queries.accounts import get_bing_accounts
 from queries.user import fetch_user_mapping
 from queries.campaign_names import fetch_campaign_names
 
@@ -25,7 +26,7 @@ def render_sidebar_filters():
             "Last 90 Days": 90}
 
         days_offset = num_days_map.get(date_range_option, 30)
-        quick_filter_start_date = today - timedelta(days=days_offset)
+        quick_filter_start_date = today - timedelta(days=days_offset) + timedelta(days=1)
         quick_filter_end_date = today
 
     # --- MANUAL DATE INPUT ---
@@ -44,6 +45,35 @@ def render_sidebar_filters():
         num_days_selected
     
     st.sidebar.markdown(f"**Selected period:** :blue[{num_days_selected} days]")
+
+
+    # --- ACCOUNTS FILTER ---
+    account_options = get_bing_accounts()
+    all_accounts = list(account_options.keys())
+
+    with st.sidebar.expander('**Accounts Manager**', expanded=False):
+        if 'accounts_selection_all_checked' not in st.session_state:
+            st.session_state.accounts_selection_all_checked = True
+        if 'current_account_selected' not in st.session_state:
+            st.session_state.current_account_selected = all_accounts
+
+        select_all_accounts = st.checkbox("Select All Accounts", value=st.session_state.accounts_selection_all_checked)
+
+        if select_all_accounts:
+            account_selection = account_options
+            st.session_state.current_account_selected = account_options
+        else:
+            account_selection = st.multiselect(
+                "Select Account(s)",
+                account_options,
+                default=st.session_state.current_account_selected,
+                key='account_multiselect'
+            )
+            st.session_state.current_account_selected = account_selection
+
+        st.session_state.account_selection_all_checked = select_all_accounts
+
+    
 
     # --- USER FILTER ---
     user_mapping = fetch_user_mapping()
@@ -91,4 +121,5 @@ def render_sidebar_filters():
 
         st.session_state.campaign_selection_all_checked = select_all_campaigns
 
-    return start_date, end_date, user_id_selection, campaign_name_selection
+    
+    return start_date, end_date, account_selection, user_id_selection, campaign_name_selection
