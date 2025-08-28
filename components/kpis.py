@@ -4,7 +4,7 @@ from datetime import timedelta
 from queries.campaign_stats import fetch_data
 
 
-def render_kpi_block(df_table, start_date, end_date, user_id_selection, campaign_name_selection):
+def render_kpi_block(df_table, start_date, end_date, user_id_selection, campaign_name_selection, account_selection):
     st.subheader("🔢 Key Performance Indicators")
     col1, col2, col3, col4 = st.columns(4)
 
@@ -17,7 +17,7 @@ def render_kpi_block(df_table, start_date, end_date, user_id_selection, campaign
     period_length = (end_date - start_date).days + 1
     prev_end_date = start_date - timedelta(days=1)
     prev_start_date = prev_end_date - timedelta(days=period_length - 1)
-    prev_df = fetch_data(prev_start_date, prev_end_date, user_id_selection, campaign_name_selection)
+    prev_df = fetch_data(prev_start_date, prev_end_date, user_id_selection, campaign_name_selection, account_selection)
 
     prev_spend = prev_df['Spend'].sum() if not prev_df.empty else 0
     prev_tcl = prev_df['TCL'].sum() if not prev_df.empty else 0
