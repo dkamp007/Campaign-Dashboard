@@ -27,22 +27,23 @@ except FileNotFoundError:
 
 
 # --- Sidebar Filters ---
-start_date, end_date, user_id_selection, campaign_name_selection = render_sidebar_filters()
+start_date, end_date, account_id_selection, user_id_selection, campaign_name_selection = render_sidebar_filters()
 
 
 
 # --- Fetch Core Data ---
-df_campaign_table = fetch_data(start_date, end_date, user_id_selection, campaign_name_selection)
+df_campaign_table = fetch_data(start_date, end_date, user_id_selection, campaign_name_selection, account_id_selection)
 
-df_daily_aggregated = fetch_aggregated_daily_data(start_date, end_date, user_id_selection, campaign_name_selection)
+df_daily_aggregated = fetch_aggregated_daily_data(start_date, end_date, user_id_selection, campaign_name_selection, account_id_selection)
 
-df_pub_data = fetch_publisher_report(start_date, end_date, user_id_selection, campaign_name_selection)
+df_pub_data = fetch_publisher_report(start_date, end_date, user_id_selection, campaign_name_selection, account_id_selection)
 
 
 
 # --- Determine if Overall or Filtered Charts Should Be Used ---
 is_filtered_by_campaigns = bool(campaign_name_selection)
 is_filtered_by_users = bool(user_id_selection)
+#is_filtered_by_accounts = bool(account_id_selection)
 
 
 if not is_filtered_by_campaigns and not is_filtered_by_users:
@@ -64,7 +65,7 @@ if not df_campaign_table.empty:
     st.divider()
 
     # --- KPI Cards ---
-    render_kpi_block(df_campaign_table, start_date, end_date, user_id_selection, campaign_name_selection, account_selection)
+    render_kpi_block(df_campaign_table, start_date, end_date, user_id_selection, campaign_name_selection, account_id_selection)
 
     st.divider()
 
@@ -75,7 +76,7 @@ if not df_campaign_table.empty:
 
     # --- Report Tabs ---
     st.subheader("📅 Campaign Report Table")
-    render_data_tabs(df_daily_aggregated, df_campaign_table, df_pub_data, start_date, end_date, user_id_selection, campaign_name_selection)
+    render_data_tabs(df_daily_aggregated, df_campaign_table, df_pub_data, start_date, end_date, user_id_selection, campaign_name_selection, account_id_selection)
 
 else:
     st.warning("No data found for the selected filters. Please adjust the dates, user IDs, or campaign names.")
