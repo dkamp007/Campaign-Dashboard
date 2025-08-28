@@ -60,18 +60,20 @@ def render_sidebar_filters():
         select_all_accounts = st.checkbox("Select All Accounts", value=st.session_state.accounts_selection_all_checked)
 
         if select_all_accounts:
-            account_selection = account_options
-            st.session_state.current_account_selected = account_options
+            account_selection = all_accounts
+            st.session_state.current_account_selected = all_accounts
         else:
             account_selection = st.multiselect(
                 "Select Account(s)",
-                account_options,
+                all_accounts,
                 default=st.session_state.current_account_selected,
                 key='account_multiselect'
             )
             st.session_state.current_account_selected = account_selection
 
-        st.session_state.account_selection_all_checked = select_all_accounts
+        st.session_state.accounts_selection_all_checked = select_all_accounts
+
+    account_id_selection = [account_options[name] for name in account_selection]
 
     
 
@@ -122,4 +124,4 @@ def render_sidebar_filters():
         st.session_state.campaign_selection_all_checked = select_all_campaigns
 
     
-    return start_date, end_date, account_selection, user_id_selection, campaign_name_selection
+    return start_date, end_date, account_id_selection, user_id_selection, campaign_name_selection
