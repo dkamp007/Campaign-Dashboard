@@ -4,8 +4,11 @@ from utils.db import run_query
 # --- Get Campaign Names based on users ---
 
 @st.cache_data(ttl=21600)
-def fetch_campaign_names(start_date, end_date, user_id=None):
+def fetch_campaign_names(start_date, end_date, user_id=None, accounts=None):
     conditions = [f"api_data_date BETWEEN '{start_date}' AND '{end_date}'"]
+    if accounts:
+        account_list = ','.join(accounts)
+        conditions.append(f"bop.bing_account_name IN ({account_list})")
     if user_id:
         user_conditions = ','.join(map(str, user_id))
         conditions.append(f"bu.user_id IN ({user_conditions})")
