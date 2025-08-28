@@ -8,11 +8,12 @@ def run_query(query):
     config = toml.load("config.toml")["database"]
     engine = None
     try:
-        engine = sqlalchemy.create_engine
-        (
+        engine = sqlalchemy.create_engine(
             f"mysql+mysqlconnector://{config['user']}:{config['password']}@{config['host']}/{config['database']}"
         )
         df = pd.read_sql(query, engine)
         return df
     except Exception as e:
-        print(f"An error occurred: {e}")
+        #print(f"An error occurred: {e}")
+        st.error(f"❌ Database query failed: {e}")
+        #return pd.DataFrame()
