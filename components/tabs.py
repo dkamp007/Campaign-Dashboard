@@ -25,7 +25,7 @@ def color_pnl(val):
 
 
 # --- MAIN TAB FUNCTION ---
-def render_data_tabs(df_aggregated, df_campaign, df_pub, start_date, end_date, user_id_selection, campaign_name_selection):
+def render_data_tabs(df_aggregated, df_campaign, df_pub, start_date, end_date, user_id_selection, campaign_name_selection, account_id_selection):
     pub_pnl_cols = ['PnL']
     pub_roi_cols = ['ROI']
     percentage_cols = ['Impr_Δ', 'Clicks_Δ', 'Spend_Δ', 'TCL_Δ', 'AFS_Δ']
