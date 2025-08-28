@@ -4,8 +4,11 @@ from utils.db import run_query
 # --- Get campaign level data for detailed view ---
 
 @st.cache_data(ttl=21600)
-def fetch_data(start_date, end_date, user_ids=None, campaign_names=None):
+def fetch_data(start_date, end_date, user_ids=None, campaign_names=None, accounts=None):
     conditions = [f"bop.api_data_date BETWEEN '{start_date}' AND '{end_date}'"]
+    if accounts:
+        account_list = "', '".join(accounts)
+        conditions.append(f"bop.bing_account_name IN ('{account_list}')")
     if user_ids:
         user_conditions = ','.join(map(str, user_ids))
         conditions.append(f"bu.user_id IN ({user_conditions})")
