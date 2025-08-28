@@ -64,7 +64,7 @@ if not df_campaign_table.empty:
     st.divider()
 
     # --- KPI Cards ---
-    render_kpi_block(df_campaign_table, start_date, end_date, user_id_selection, campaign_name_selection)
+    render_kpi_block(df_campaign_table, start_date, end_date, user_id_selection, campaign_name_selection, account_selection)
 
     st.divider()
 
