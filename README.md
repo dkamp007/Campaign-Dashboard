@@ -8,6 +8,8 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 
 - **Dynamic Date Filtering:** Quick filters like Last **7/15/30** days or custom date selection.
 
+- **Account-Based Filtering:** Select campaigns by the bing accounts (name-based UI with ID mapping).
+
 - **User-Based Filtering:** Select campaigns by user (name-based UI with ID mapping).
 
 - **Campaign Name Auto-Filtering:** Campaigns are filtered based on selected users.
@@ -61,6 +63,7 @@ A fully interactive and modular web-based dashboard to analyze Bing Ads campaign
 │   └── fetch_data.py
 │   └── publishers_stats.py
 │   └── user.py
+│   └── accounts.py
 │   └── chart_data.py
 ├── components/
 │   └── kpis.py
