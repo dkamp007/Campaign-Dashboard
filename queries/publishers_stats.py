@@ -9,7 +9,7 @@ def fetch_publisher_report(start_date, end_date, user_id=None, campaign_names=No
     conditions = [f"a.api_data_date BETWEEN '{start_date}' AND '{end_date}'"]
     if account_id:
         account_list = ','.join(map(str, account_id))
-        conditions.append(f"a.account_id IN ({account_list}))
+        conditions.append(f"a.account_id IN ({account_list})")
     if user_id:
         user_conditions = ','.join(map(str, user_id))
         conditions.append(f"b.user_id IN ({user_conditions})")
